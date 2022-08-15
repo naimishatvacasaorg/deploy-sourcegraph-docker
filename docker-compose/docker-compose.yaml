@@ -125,6 +125,8 @@ services:
   # service.
   sourcegraph-frontend-0:
     container_name: sourcegraph-frontend-0
+    ports:
+      - '0.0.0.0:6060`6060'
     image: 'index.docker.io/sourcegraph/frontend:3.42.2@sha256:abe3ed2071e9e8020209bf0f4cf5cb4432fb25e60f776fedb9be0423747e259e'
     cpus: 4
     mem_limit: '8g'
@@ -223,6 +225,7 @@ services:
       - JAEGER_AGENT_HOST=jaeger
     volumes:
       - 'gitserver-0:/data/repos'
+      - '~/.ssh:/home/sourcegraph/.ssh'
     networks:
       - sourcegraph
     restart: always
